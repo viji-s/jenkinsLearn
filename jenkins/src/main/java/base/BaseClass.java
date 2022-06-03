@@ -4,7 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -12,22 +14,22 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseClass {
 	protected WebDriver driver;
 
-	@BeforeMethod
-	public void setUp(String browser) {
+	@BeforeSuite
+	public void setUp() {
 
-		if (browser.equalsIgnoreCase("chrome")) {
+		if (System.getProperty("browser").equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
-		} else if (browser.equalsIgnoreCase("firefox")) {
+		} else if (System.getProperty("browser").equalsIgnoreCase("firefox")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new FirefoxDriver();
 		}
 		
-		driver.get("https://www.google.com");
+		driver.get(System.getProperty("url"));
 		
 	}
 	
-	@AfterMethod
+	@AfterSuite
 	public void tearDown() {
 		driver.quit();
 	}
