@@ -21,7 +21,7 @@ public class BaseClass {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (System.getProperty("browser").equalsIgnoreCase("firefox")) {
-			WebDriverManager.chromedriver().setup();
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
 		
